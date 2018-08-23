@@ -16,7 +16,7 @@ class MatchWebPageTest(TestCase):
         self.mock_response.headers = {'Content-Type': 'text/html'}
         self.mock_response.text = text_data
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     def test_exact_match(self, mock_get):
         text = "This is a class for comparing sequences of lines of text, and producing human-readable differences" \
                " or deltas. Differ uses SequenceMatcher both to compare sequences of lines, and to compare sequences" \
@@ -28,7 +28,7 @@ class MatchWebPageTest(TestCase):
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     def test_exact_match_weird_format(self, mock_get):
         """ Same paragraph as above but with unnecessary enters, tabs and spaces added """
         text = """
@@ -42,7 +42,7 @@ class MatchWebPageTest(TestCase):
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     @mock.patch('textmatcher.program.exact_match')
     def test_percentage_match(self, mock_exact, mock_get):
         """
@@ -65,7 +65,7 @@ class MatchWebPageTest(TestCase):
         mock_exact.assert_called()
         self.assertEqual(ratio, 0.75)
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     def test_no_match(self, mock_get):
         text = """
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo ex eget nibh posuere, non condimentum 

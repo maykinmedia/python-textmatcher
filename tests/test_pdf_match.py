@@ -12,7 +12,7 @@ class PDFMatchTest(TestCase):
         self.mock_response.status_code = 200
         self.mock_response.headers = {'Content-Type': 'application/pdf'}
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     def test_perfect_match(self, mock_get):
         text = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis luctus lacus, id tristique magna
 vehicula in. Fusce vel neque a metus malesuada scelerisque sit amet auctor nibh. In luctus viverra
@@ -31,7 +31,7 @@ commodo eget, dictum in diam."""
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     def test_exact_match_weird_format(self, mock_get):
         """ Same paragraph as above but with unnecessary enters, tabs and spaces added """
         text = """   Lorem ipsum
@@ -53,7 +53,7 @@ commodo eget, dictum in diam."""
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     @mock.patch('textmatcher.program.exact_match')
     def test_percentage_match(self, mock_match, mock_get):
         """
@@ -81,7 +81,7 @@ commodo eget, dictum in diam."""
         mock_get.assert_called()
         self.assertEqual(ratio, 0.75)
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     def test_first_line_of_multiple_paragraphs_match(self, mock_get):
         text = """
         
@@ -105,7 +105,7 @@ commodo eget, dictum in diam."""
         self.assertGreaterEqual(ratio, 0.95)
         self.assertLessEqual(ratio, 1.00)
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     def test_no_match(self, mock_get):
         text = """This text should not be in the PDF. The result will 0.0, unless.. this text is within the PDF-Document.
         """
@@ -121,7 +121,7 @@ commodo eget, dictum in diam."""
         mock_get.assert_called()
         self.assertEqual(ratio, 0.0)
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     def test_text_with_block_match(self, mock_get):
         """ This part of text resides within a 'text' block"""
         text = """mkdir pdfminer\cmap
@@ -139,7 +139,7 @@ python tools\conv_cmap.py -c B5=cp950 -c UniCNS-UTF8=utf-8 pdfminer\cmap
         mock_get.assert_called()
         self.assertGreaterEqual(ratio, .89)
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     def test_text_different_format_match(self, mock_get):
         """ Within the PDF(pdfminer-docs) this text has a different styling format """
         text = "-o filename"
@@ -155,7 +155,7 @@ python tools\conv_cmap.py -c B5=cp950 -c UniCNS-UTF8=utf-8 pdfminer\cmap
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
-    @mock.patch('program.requests.get')
+    @mock.patch('textmatcher.program.requests.get')
     def test_text_list_item_match(self, mock_get):
         """ This line is part of a list within the PDF(pdfminer-docs) """
         text = "• exact : preserve the exact location of each individual character (a large and messy HTML)."
