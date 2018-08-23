@@ -1,3 +1,3 @@
-from program import match
+from .program import match
 
 __ALL__ = ['match']
