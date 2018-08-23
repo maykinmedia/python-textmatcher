@@ -1,3 +1,4 @@
+from os import path
 from unittest import TestCase, mock
 
 from requests.models import Response
@@ -12,6 +13,9 @@ class PDFMatchTest(TestCase):
         self.mock_response.status_code = 200
         self.mock_response.headers = {'Content-Type': 'application/pdf'}
 
+        self.pdf_1500_words = path.abspath(path.join(path.dirname(__file__), 'data', '1500_words_pdf.pdf'))
+        self.pdf_pdfminder_doc = path.abspath(path.join(path.dirname(__file__), 'data', 'pdfminer-docs.pdf'))
+
     @mock.patch('textmatcher.program.requests.get')
     def test_perfect_match(self, mock_get):
         text = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis luctus lacus, id tristique magna
@@ -21,7 +25,8 @@ rhoncus rhoncus cursus. Quisque elementum erat in tempus placerat. Morbi arcu to
 commodo eget, dictum in diam."""
 
         text_data = b''
-        with open('data/1500_words_pdf.pdf', 'rb') as fp:
+
+        with open(self.pdf_1500_words, 'rb') as fp:
             text_data = fp.read(-1)
 
         self.mock_response.content = text_data
@@ -43,7 +48,7 @@ rhoncus rhoncus cursus.\t\t Quisque elementum erat in tempus placerat. Morbi arc
 commodo eget, dictum in diam."""
 
         text_data = b''
-        with open('data/1500_words_pdf.pdf', 'rb') as fp:
+        with open(self.pdf_1500_words, 'rb') as fp:
             text_data = fp.read(-1)
 
         self.mock_response.content = text_data
@@ -70,7 +75,7 @@ commodo eget, dictum in diam."""
         text = "012345"
         text_data = b''
 
-        with open('data/1500_words_pdf.pdf', 'rb') as fp:
+        with open(self.pdf_1500_words, 'rb') as fp:
             text_data = fp.read(-1)
 
         self.mock_response.content = text_data
@@ -94,7 +99,7 @@ commodo eget, dictum in diam."""
         """
         text_data = b''
 
-        with open('data/1500_words_pdf.pdf', 'rb') as fp:
+        with open(self.pdf_1500_words, 'rb') as fp:
             text_data = fp.read(-1)
 
         self.mock_response.content = text_data
@@ -111,7 +116,7 @@ commodo eget, dictum in diam."""
         """
         text_data = b''
 
-        with open('data/1500_words_pdf.pdf', 'rb') as fp:
+        with open(self.pdf_1500_words, 'rb') as fp:
             text_data = fp.read(-1)
 
         self.mock_response.content = text_data
@@ -129,7 +134,7 @@ python tools\conv_cmap.py -c B5=cp950 -c UniCNS-UTF8=utf-8 pdfminer\cmap
 ˓ → Adobe-CNS1 cmaprsrc\cid2code_Adobe_CNS1.txt"""
         text_data = b''
 
-        with open('data/pdfminer-docs.pdf', 'rb') as fp:
+        with open(self.pdf_pdfminder_doc, 'rb') as fp:
             text_data = fp.read(-1)
 
         self.mock_response.content = text_data
@@ -145,7 +150,7 @@ python tools\conv_cmap.py -c B5=cp950 -c UniCNS-UTF8=utf-8 pdfminer\cmap
         text = "-o filename"
         text_data = b''
 
-        with open('data/pdfminer-docs.pdf', 'rb') as fp:
+        with open(self.pdf_pdfminder_doc, 'rb') as fp:
             text_data = fp.read(-1)
 
         self.mock_response.content = text_data
@@ -161,7 +166,7 @@ python tools\conv_cmap.py -c B5=cp950 -c UniCNS-UTF8=utf-8 pdfminer\cmap
         text = "• exact : preserve the exact location of each individual character (a large and messy HTML)."
         text_data = b''
 
-        with open('data/pdfminer-docs.pdf', 'rb') as fp:
+        with open(self.pdf_pdfminder_doc, 'rb') as fp:
             text_data = fp.read(-1)
 
         self.mock_response.content = text_data

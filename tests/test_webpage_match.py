@@ -1,3 +1,4 @@
+from os import path
 from unittest import TestCase, mock
 
 from requests.models import Response
@@ -7,7 +8,8 @@ import textmatcher
 
 class MatchWebPageTest(TestCase):
     def setUp(self):
-        with open('data/difflib_python_3.6.6_docs.html', mode='r', encoding='ISO-8859-1') as fp:
+        web_page = path.abspath(path.join(path.dirname(__file__), 'data', 'difflib_python_3.6.6_docs.html'))
+        with open(web_page, mode='r', encoding='ISO-8859-1') as fp:
             text_data = fp.read(-1)
 
         self.mock_response = mock.create_autospec(Response)
