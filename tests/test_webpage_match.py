@@ -43,7 +43,7 @@ class MatchWebPageTest(TestCase):
         self.assertEqual(ratio, 1.0)
 
     @mock.patch('program.requests.get')
-    @mock.patch('program.exact_match')
+    @mock.patch('textmatcher.program.exact_match')
     def test_percentage_match(self, mock_exact, mock_get):
         """
         From the ratio docstring:

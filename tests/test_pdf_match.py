@@ -53,12 +53,8 @@ commodo eget, dictum in diam."""
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
-    # smaller
-    # 1, 2, 3, 4, 5, 6 -> percentage
-    # one, two, three, four, five
-    # normalizeren; decode
     @mock.patch('program.requests.get')
-    @mock.patch('program.exact_match')
+    @mock.patch('textmatcher.program.exact_match')
     def test_percentage_match(self, mock_match, mock_get):
         """
         From the ratio docstring:
