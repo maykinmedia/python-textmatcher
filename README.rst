@@ -12,7 +12,7 @@ Welcome to TextMatcher's documentation!
 :Keywords: ``textmatcher``
 :PythonVersion: 3.6
 
-|build-status| |requirements| |coverage|
+|build-status| |coverage|
 
 |python-versions| |pypi-version|
 
@@ -54,18 +54,14 @@ Usage
 
 
 
-.. |build-status| image:: https://travis-ci.org/maykinmedia/TextMatcher.svg?branch=develop
-    :target: https://travis-ci.org/maykinmedia/TextMatcher
+.. |build-status| image:: https://travis-ci.org/maykinmedia/python-textmatcher.svg?branch=master
+    :target: https://travis-ci.org/maykinmedia/python-textmatcher/
 
-.. |requirements| image:: https://requires.io/github/maykinmedia/TextMatcher/requirements.svg?branch=develop
-    :target: https://requires.io/github/maykinmedia/TextMatcher/requirements/?branch=develop
-    :alt: Requirements status
-
-.. |coverage| image:: https://codecov.io/gh/maykinmedia/TextMatcher/branch/develop/graph/badge.svg
-    :target: https://codecov.io/gh/maykinmedia/TextMatcher
+.. |coverage| image:: https://codecov.io/gh/maykinmedia/python-textmatcher/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/maykinmedia/python-textmatcher
     :alt: Coverage status
 
-.. |python-versions| image:: https://img.shields.io/pypi/pyversions/TextMatcher.svg
+.. |python-versions| image:: https://img.shields.io/pypi/pyversions/textmatcher.svg
 
-.. |pypi-version| image:: https://img.shields.io/pypi/v/TextMatcher.svg
-    :target: https://pypi.org/project/TextMatcher/
+.. |pypi-version| image:: https://img.shields.io/pypi/v/textmatcher.svg
+    :target: https://pypi.org/project/textmatcher/
