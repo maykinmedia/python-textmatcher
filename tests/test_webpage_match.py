@@ -2,7 +2,7 @@ from unittest import TestCase, mock
 
 from requests.models import Response
 
-import program
+import textmatcher
 
 
 class MatchWebPageTest(TestCase):
@@ -24,7 +24,7 @@ class MatchWebPageTest(TestCase):
 
         mock_get.return_value = self.mock_response
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
@@ -38,7 +38,7 @@ class MatchWebPageTest(TestCase):
         """
         mock_get.return_value = self.mock_response
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
@@ -60,7 +60,7 @@ class MatchWebPageTest(TestCase):
         mock_get.return_value = self.mock_response
         mock_exact.return_value = 0.0
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         mock_exact.assert_called()
         self.assertEqual(ratio, 0.75)
@@ -76,6 +76,6 @@ class MatchWebPageTest(TestCase):
         """
         mock_get.return_value = self.mock_response
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 0.0)

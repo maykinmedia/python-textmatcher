@@ -2,7 +2,7 @@ from unittest import TestCase, mock
 
 from requests.models import Response
 
-import program
+import textmatcher
 
 
 class PDFMatchTest(TestCase):
@@ -27,7 +27,7 @@ commodo eget, dictum in diam."""
         self.mock_response.content = text_data
         mock_get.return_value = self.mock_response
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
@@ -49,7 +49,7 @@ commodo eget, dictum in diam."""
         self.mock_response.content = text_data
         mock_get.return_value = self.mock_response
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
@@ -81,7 +81,7 @@ commodo eget, dictum in diam."""
         mock_get.return_value = self.mock_response
         mock_match.return_value = False
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 0.75)
 
@@ -104,7 +104,7 @@ commodo eget, dictum in diam."""
         self.mock_response.content = text_data
         mock_get.return_value = self.mock_response
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertGreaterEqual(ratio, 0.95)
         self.assertLessEqual(ratio, 1.00)
@@ -121,7 +121,7 @@ commodo eget, dictum in diam."""
         self.mock_response.content = text_data
         mock_get.return_value = self.mock_response
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 0.0)
 
@@ -139,7 +139,7 @@ python tools\conv_cmap.py -c B5=cp950 -c UniCNS-UTF8=utf-8 pdfminer\cmap
         self.mock_response.content = text_data
         mock_get.return_value = self.mock_response
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertGreaterEqual(ratio, .89)
 
@@ -155,7 +155,7 @@ python tools\conv_cmap.py -c B5=cp950 -c UniCNS-UTF8=utf-8 pdfminer\cmap
         self.mock_response.content = text_data
         mock_get.return_value = self.mock_response
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
 
@@ -171,6 +171,6 @@ python tools\conv_cmap.py -c B5=cp950 -c UniCNS-UTF8=utf-8 pdfminer\cmap
         self.mock_response.content = text_data
         mock_get.return_value = self.mock_response
 
-        ratio = program.match('http://someurl.com', text)
+        ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
