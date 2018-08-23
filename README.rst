@@ -14,7 +14,7 @@ Welcome to TextMatcher's documentation!
 
 |build-status| |requirements| |coverage|
 
-|python-versions| |django-versions| |pypi-version|
+|python-versions| |pypi-version|
 
 Extract data from an web-page or PDF-document and match it with the given text parameter
 
@@ -37,7 +37,7 @@ Install
 
 .. code-block:: bash
 
-    pip install TextMatcher
+    pip install textmatcher
 
 
 Usage
@@ -45,7 +45,7 @@ Usage
 
 .. code-block:: python
 
-    from TextMatcher.program import match
+    from textmatcher import match
 
     find = 'Python enabled us to create EVE Online, a massive multiplayer game, in record time.'
     ratio = match('https://www.python.org/about/quotes/', find)
@@ -66,8 +66,6 @@ Usage
     :alt: Coverage status
 
 .. |python-versions| image:: https://img.shields.io/pypi/pyversions/TextMatcher.svg
-
-.. |django-versions| image:: https://img.shields.io/pypi/djversions/TextMatcher.svg
 
 .. |pypi-version| image:: https://img.shields.io/pypi/v/TextMatcher.svg
     :target: https://pypi.org/project/TextMatcher/
