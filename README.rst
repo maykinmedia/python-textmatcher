@@ -7,7 +7,7 @@
 Welcome to TextMatcher's documentation!
 =================================================
 
-:Version: 0.1.0
+:Version: 0.12
 :Source: https://github.com/maykinmedia/python-textmatcher
 :Keywords: ``textmatcher``
 :PythonVersion: 3.6

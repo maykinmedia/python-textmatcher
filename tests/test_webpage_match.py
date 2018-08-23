@@ -81,3 +81,18 @@ class MatchWebPageTest(TestCase):
         ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 0.0)
+
+    @mock.patch('textmatcher.program.requests.get')
+    def test_content_type_with_charset(self, mock_get):
+        """
+        BUG: Some Content responses also have a charset with it that is separated by ';'
+        FIX: splitting the Content-type on ';' and return the first item
+        """
+        text = """hyperbolic"""
+        self.mock_response.headers['Content-Type'] = 'text/html; charset=utf-8'
+        mock_get.return_value = self.mock_response
+
+        ratio = textmatcher.match('http://someurl.com', 'text')
+
+        self.assertEqual(ratio, 1.0)
+

@@ -175,3 +175,23 @@ python tools\conv_cmap.py -c B5=cp950 -c UniCNS-UTF8=utf-8 pdfminer\cmap
         ratio = textmatcher.match('http://someurl.com', text)
         mock_get.assert_called()
         self.assertEqual(ratio, 1.0)
+
+    @mock.patch('textmatcher.program.requests.get')
+    def test_content_type_with_charset(self, mock_get):
+        """
+        BUG: Some Content responses also have a charset with it that is separated by ';'
+        FIX: splitting the Content-type on ';' and return the first item
+        """
+        text = """Lorem"""
+        text_data = b''
+
+        with open(self.pdf_1500_words, 'rb') as fp:
+            text_data = fp.read(-1)
+
+        self.mock_response.content = text_data
+        self.mock_response.headers['Content-Type'] = 'application/pdf; charset=utf-8'
+        mock_get.return_value = self.mock_response
+
+        ratio = textmatcher.match('http://someurl.com', text)
+
+        self.assertEqual(ratio, 1.0)

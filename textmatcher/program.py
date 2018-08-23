@@ -32,9 +32,11 @@ def get_text_data(url):
     """ Retrieve data in a text format from a given url """
     response = requests.get(url)
 
-    if response.headers['Content-Type'] == 'application/pdf':
+    content_type = response.headers['Content-Type'].split(';')[0]
+
+    if content_type == 'application/pdf':
         text_data = pdf_to_text(response.content)
-    elif response.headers['Content-Type'] == 'text/html':
+    elif content_type == 'text/html':
         soup = BeautifulSoup(response.text.encode(encoding=response.encoding), 'html.parser')
         text_data = soup.get_text()
     else:
